@@ -23,24 +23,9 @@ def flatten_list(l):
     return [item for sublist in l for item in sublist]
 
 
-
 dirname = 'data_CPP/'
 path = 'MCF-7 1uM CCPP15-30min/MCF-7 1uM CCPP15 30min-07052023-4/'
 filename = '_Process_13741_/stack1/frame_t_0.pkl'
-
-"""
-import gpu_tracking as gt
-for root, dirs, files in os.walk(directory):
-    for name in files:
-        if name.endswith(".ets"):
-            print(os.path.join(root,name)[:-4])
-            imgs = gt.load(os.path.join(root,name), 
-                           frames=None, channel=None)
-            pickle.dump(imgs, open(os.path.join(root,name)[:-4]+'.pkl', 'wb'))
-            continue
-        else:
-            continue
-"""
 
 rootnames = []
 filenames = []
@@ -59,14 +44,6 @@ for f, r in zip(filenames, rootnames):
     assert f.split(dirname)[-1].split('/frame_t')[0] == r
 # %%
 
-"""
-Notes:
-process_XXXX is not the best saving option
-should save a txt of what each process is or name better
-
-Hek293 or hek293t?
-
-"""
 labels = {
 14405: 'hek293_pre',
 14406: 'hek293_post_ccp',
@@ -132,10 +109,10 @@ labels = {
 13373: 'mcf7_post_ccp',
 13374: 'mcf7_post_mem',
 
-# # something funky is happening here
+# # error in image saving and processing
 # 13744: 'mcf7_pre_tat',
 # 13745: 'mcf7_post_TAT', # last couple of frames are blank
-# 13746: 'mcf7_post_tatmem', # last couple of frames look like post_TAT
+# 13746: 'mcf7_post_tatmem', # last couple of frames look like post_TAT images have been corrupted and mixed with other files somehow
 
 13747: 'mcf7_pre_tat', 
 13748: 'mcf7_post_TAT',
@@ -261,10 +238,6 @@ labels = {
 }
 
 # %%
-
-print('TAT looks weird - I have put notes next to the weird files')
-print('when files are in chunks of 3 it means I have checked them')
-print('cell segm. doesnt always work so I am going to do a simple intensity over first frame analysis for the post CCP / TAT channel')
 
 i = 0
 
@@ -412,21 +385,6 @@ for e in np.unique(exp_names):
     plt.tight_layout()
     plt.savefig('data_CPP/figures/'+e.replace(' ', '_')+'_ccp_intensity_curves.pdf', bbox_inches='tight')
     plt.show()
-
-    
-    # for c in ccp_f_names:
-    #     fig, ax = plt.subplots(1,5,figsize=(15,6))
-    #     img = pickle.load(open(c, 'rb'))
-    #     ax[0].imshow(img[0,:,:]-img[0,:,:], cmap='Greys_r', vmin=0, vmax=500)
-    #     ax[0].set_title('Frame 0 {:.3}'.format(intensities_list_per_cell_flatten[ccp_f_all.index(c)][0]))
-    #     ax[1].imshow(img[15,:,:]-img[0,:,:], cmap='Greys_r', vmin=0, vmax=500)
-    #     ax[1].set_title('Frame 15 {:.3}'.format(intensities_list_per_cell_flatten[ccp_f_all.index(c)][15]))
-    #     ax[2].imshow(img[30,:,:], cmap='Greys_r', vmin=0, vmax=500)
-    #     ax[2].set_title('Frame 30 {:.3}'.format(intensities_list_per_cell_flatten[ccp_f_all.index(c)][30]))
-    #     ax[3].imshow(img[45,:,:], cmap='Greys_r', vmin=0, vmax=500)
-    #     ax[3].set_title('Frame 45 {:.3}'.format(intensities_list_per_cell_flatten[ccp_f_all.index(c)][45]))
-    #     ax[4].imshow(img[59,:,:], cmap='Greys_r', vmin=0, vmax=500)
-    #     ax[4].set_title('Frame 59 {:.3}'.format(intensities_list_per_cell_flatten[ccp_f_all.index(c)][59]))
 
 intensities_list_per_cell_flatten = flatten_list(intensities_list_per_cell)
 print(np.unique(exp_names))
