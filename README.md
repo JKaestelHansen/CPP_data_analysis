@@ -4,7 +4,7 @@ Data analysis pipeline for cell intensities after treatment with CPP per Zhang e
 Install required packages by:
 - conda env create -f cpp_environment.yml
 Activate enviroment:
-- conda activate
+- conda activate env_ccp
 make the required folders structure: 
 - mkdir data_CPP
 - cd data_CPP
