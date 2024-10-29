@@ -1,4 +1,4 @@
-name: yuan_ccp
+name: env_cpp
 channels:
   - defaults
 dependencies:
