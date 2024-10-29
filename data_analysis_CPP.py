@@ -24,7 +24,7 @@ def flatten_list(l):
 
 
 
-dirname = 'Yuan_CCP/'
+dirname = 'data_CPP/'
 path = 'MCF-7 1uM CCPP15-30min/MCF-7 1uM CCPP15 30min-07052023-4/'
 filename = '_Process_13741_/stack1/frame_t_0.pkl'
 
@@ -410,7 +410,7 @@ for e in np.unique(exp_names):
     plt.ylabel('Intensity increase relative to bg (a.f.u.)')
     plt.xlabel('Frame')
     plt.tight_layout()
-    plt.savefig('new_yuan_figs/'+e.replace(' ', '_')+'_ccp_intensity_curves.pdf', bbox_inches='tight')
+    plt.savefig('data_CPP/figures/'+e.replace(' ', '_')+'_ccp_intensity_curves.pdf', bbox_inches='tight')
     plt.show()
 
     
@@ -474,7 +474,7 @@ plt.legend([handles[idx] for idx in order],[labels_[idx] for idx in order])
 plt.ylabel('Intensity increase relative to bg (a.f.u.)')
 plt.xlabel('Frame')
 plt.tight_layout()
-plt.savefig('new_yuan_figs/mcf7_ccp_intensity_curves.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves.pdf', bbox_inches='tight')
 
 plt.figure(figsize=(6,5))
 for e in np.sort(np.unique(exp_names)):
@@ -519,7 +519,7 @@ plt.legend([handles[idx] for idx in order],[labels_[idx] for idx in order])
 plt.ylabel('Intensity increase relative to bg (a.f.u.)')
 plt.xlabel('Frame')
 plt.tight_layout()
-plt.savefig('new_yuan_figs/mcf7_ccp_intensity_curves_zoom.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves_zoom.pdf', bbox_inches='tight')
 
 # %%
 my_cmap = copy.copy(plt.cm.get_cmap('hsv')) 
@@ -743,7 +743,7 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
-dirname = 'Yuan_CCP/'
+dirname = 'data_CCP/'
 cell_type = 'mcf7'
 
 ccp_f_all = pickle.load(open(dirname+cell_type+'_ccp_f_all.pkl', 'rb'))
@@ -786,7 +786,7 @@ for e in np.unique(exp_names):
     plt.fill_between(x, y-yerr, y+yerr, alpha=0.25)
     plt.plot(x, y, label=e)
 plt.legend()
-plt.savefig('Yuan_CCP/figures/mcf7_ccp_intensity_curves.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves.pdf', bbox_inches='tight')
 
 
 plt.figure()
@@ -799,7 +799,7 @@ for e in np.unique(exp_names):
     plt.plot(x, y, label=e)
 plt.legend()
 plt.ylim(0,.15)
-plt.savefig('Yuan_CCP/figures/mcf7_ccp_intensity_curves_zoom.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves_zoom.pdf', bbox_inches='tight')
 
 # %%
 
@@ -814,7 +814,7 @@ for ei, e in enumerate(np.unique(exp_names)):
         else:
             plt.plot(x, y, color='C'+str(ei))
 plt.legend()
-plt.savefig('Yuan_CCP/figures/mcf7_ccp_intensity_curves_individual.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves_individual.pdf', bbox_inches='tight')
 
 
 plt.figure()
@@ -829,7 +829,7 @@ for ei, e in enumerate(np.unique(exp_names)):
             plt.plot(x, y, color='C'+str(ei))
 plt.legend()
 plt.ylim(0,.15)
-plt.savefig('Yuan_CCP/figures/mcf7_ccp_intensity_curves_individual_zoom.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/mcf7_ccp_intensity_curves_individual_zoom.pdf', bbox_inches='tight')
 
 
 # %%
@@ -863,6 +863,6 @@ for cell_type in cell_types:
 fig.delaxes(ax[1,3])
 
 
-plt.savefig('Yuan_CCP/figures/ccp_intensity_curves_celltypes.pdf', bbox_inches='tight')
+plt.savefig('data_CPP/figures/ccp_intensity_curves_celltypes.pdf', bbox_inches='tight')
 
 # %%
